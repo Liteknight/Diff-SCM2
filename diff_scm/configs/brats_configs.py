@@ -8,17 +8,17 @@ import os
 
 def get_default_configs():
     config = ml_collections.ConfigDict()
-    config.dataset_name = "BRATS" 
-    dataset = "brats2021_64x64" # "brats2021_64x64" , "brats2021_preprocessed_99max"
+    config.dataset_name = "ukbb"
+    dataset = "ukbb" # "brats2021_64x64" , "brats2021_preprocessed_99max"
     use_gpus = "0"  # e.g. "0,1,2"
     os.environ["CUDA_VISIBLE_DEVICES"] = use_gpus
     # data
     config.data = data = ml_collections.ConfigDict()
-    data.path = Path(r"../diff_scm/datasets/brats/") / config.dataset_name
+    data.path = Path("/media/data/finn/PycharmProjects/Diff-SCM2/diff_scm/datasets/age")
     data.sequence_translation = False # bool
     data.healthy_data_percentage = None  # float [0,1]; 1 for training using full data; None for training with healthy data only
-    config.experiment_name = f"anomaly_diffusion_healthy_only_train_" + dataset
-    experiment_path = r"../experiment_data/"
+    config.experiment_name = f"experiment_" + dataset
+    experiment_path = r"./experiment_data/"
 
     ## Diffusion parameters
     config.diffusion = diffusion = ml_collections.ConfigDict()
@@ -36,7 +36,7 @@ def get_default_configs():
 
     ## score model config
     config.score_model = score_model = ml_collections.ConfigDict()
-    score_model.image_size = 64
+    score_model.image_size = 128
     score_model.num_input_channels = 4
     score_model.num_channels = 64 #64,96
     score_model.num_res_blocks = 2 #2,3

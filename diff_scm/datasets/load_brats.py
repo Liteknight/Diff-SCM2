@@ -117,9 +117,9 @@ class BrainDataset(torch.utils.data.Dataset):
         self.sequence_translation = sequence_translation
         self.use_channels = use_channels if use_channels is not None else list(range(4))
         self.split = split
-        train_path = datapath / "npy_train"
-        val_path = datapath / "npy_val"
-        test_path = datapath / "npy_test"
+        train_path = datapath / "npy_train/"
+        val_path = datapath / "npy_val/"
+        test_path = datapath / "npy_test/"
 
         if split == "train":
             path = train_path
